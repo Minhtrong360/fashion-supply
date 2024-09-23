@@ -10,28 +10,29 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ChevronDown, Menu, ShoppingCart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import "../app/globals.css";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 const menuItems = [
-  { title: "Giới thiệu", href: "/gioi-thieu" },
+  { title: "Giới thiệu", href: "/about-us" },
   {
     title: "Sản phẩm",
     href: "/san-pham",
     submenu: [
-      { title: "Quần áo", href: "/san-pham/quan-ao" },
-      { title: "Phụ kiện", href: "/san-pham/phu-kien" },
+      { title: "Quần áo", href: "/product/category/quan-ao" },
+      { title: "Phụ kiện", href: "/product/category/phu-kien" },
     ],
   },
-  { title: "Liên hệ", href: "/lien-he" },
+  { title: "Liên hệ", href: "/contact" },
 ];
 
 export default function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [cartItemCount, setCartItemCount] = React.useState(0);
   const pathname = usePathname();
 
-  const handleCartClick = () => {
-    console.log("Cart clicked");
-  };
+  const cartItemCount = useSelector(
+    (state: RootState) => state.cart.totalItems
+  );
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -58,7 +59,7 @@ export default function Header() {
                     <ChevronDown className="ml-1 h-4 w-4" />
                   </Button>
                   <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-background border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out">
-                    <div className="rounded-md ring-1 ring-black ring-opacity-5 py-1">
+                    <div className="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
                       {item.submenu.map((subItem) => (
                         <Link
                           key={subItem.title}
@@ -87,23 +88,19 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="relative"
-              onClick={handleCartClick}
-              aria-label="Giỏ hàng"
-            >
-              <ShoppingCart className="h-5 w-5" />
-              {cartItemCount > 0 && (
-                <Badge
-                  variant="destructive"
-                  className="absolute -right-2 -top-2 h-6 w-6 rounded-full p-0 text-xs flex items-center justify-center"
-                >
-                  {cartItemCount}
-                </Badge>
-              )}
-            </Button>
+            <Link href="/cart">
+              <Button variant="ghost" size="icon" className="relative">
+                <ShoppingCart className="h-5 w-5" />
+                {cartItemCount > 0 && (
+                  <Badge
+                    variant="destructive"
+                    className="absolute -right-2 -top-2 h-6 w-6 rounded-full p-0 text-xs flex items-center justify-center"
+                  >
+                    {cartItemCount}
+                  </Badge>
+                )}
+              </Button>
+            </Link>
 
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>

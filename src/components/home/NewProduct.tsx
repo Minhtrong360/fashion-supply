@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+
+import ProductCard from "../productPage/ProductCard";
 
 // Mock product data
 const products = [
@@ -149,30 +149,13 @@ export default function NewProduct() {
       <h1 className="text-3xl font-bold mb-8">Sản phẩm mới</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {currentProducts.map((product) => (
-          <Card key={product.id} className="overflow-hidden">
-            <Link href={`/product/${product.id}`}>
-              <Image
-                src={product.image}
-                alt={product.name}
-                width={300}
-                height={300}
-                className="w-full h-64 object-cover"
-              />
-            </Link>
-            <CardContent className="p-4">
-              <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
-              <p className="text-gray-600">
-                {product.price.toLocaleString("vi-VN")} ₫
-              </p>
-            </CardContent>
-            <CardFooter className="p-4">
-              <Link href={`/product/${product.id}`}>
-                <Button variant="outline" className="w-full">
-                  Xem chi tiết
-                </Button>
-              </Link>
-            </CardFooter>
-          </Card>
+          <ProductCard
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            price={product.price}
+            image={product.image}
+          />
         ))}
       </div>
       <div className="flex justify-center mt-8">
