@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 interface Review {
   id: number;
@@ -131,7 +132,7 @@ export default function ReviewComponent() {
           <Link href={review.link} key={review.id} className="group">
             <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 transform hover:scale-105">
               <div className="relative">
-                <img
+                <Image
                   src={review.image}
                   alt={review.title}
                   className="w-full h-48 object-cover"
