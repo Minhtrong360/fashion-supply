@@ -33,11 +33,10 @@ export default function Contact() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div
           ref={leftColumnRef}
-          className="md:col-span-2 space-y-6 md:sticky md:top-0"
-          style={{ height: `calc(100vh - 2rem)`, overflowY: "auto" }}
+          className="md:col-span-2 space-y-6 md:sticky md:top-0 overflow-hidden"
         >
           <Image
-            src="/placeholder.svg?height=100&width=300"
+            src="/samhy.png"
             alt="Tiệm Thanh Xuân Logo"
             width={300}
             height={100}
@@ -67,7 +66,7 @@ export default function Contact() {
             </p>
             <p>
               <strong>Facebook:</strong>{" "}
-              <Link href="#" className="text-blue-600 hover:underline">
+              <Link href="/" className="text-blue-600 hover:underline">
                 Tiệm Thanh Xuân - Cho thuê váy, đầm dự tiệc
               </Link>
             </p>
@@ -147,16 +146,6 @@ export default function Contact() {
             </button>
           </div>
 
-          <div className="bg-gray-100 p-4 rounded-lg">
-            <Image
-              src="/placeholder.svg?height=50&width=200"
-              alt="Phone Number"
-              width={200}
-              height={50}
-              className="mx-auto"
-            />
-          </div>
-
           <div className="space-y-4">
             <h2 className="text-xl font-semibold">Bài viết mới</h2>
             <ul className="space-y-2">
@@ -190,7 +179,7 @@ export default function Contact() {
 
           <div>
             <Image
-              src="/placeholder.svg?height=400&width=300"
+              src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D"
               alt="Sét váy sweater xanh lá"
               width={300}
               height={400}
@@ -201,7 +190,7 @@ export default function Contact() {
 
           <div>
             <Image
-              src="/placeholder.svg?height=400&width=300"
+              src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D"
               alt="Đầm hoa nhí trắng"
               width={300}
               height={400}
@@ -212,7 +201,7 @@ export default function Contact() {
 
           <div>
             <Image
-              src="/placeholder.svg?height=400&width=300"
+              src="https://images.unsplash.com/photo-1484327973588-c31f829103fe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D"
               alt="Áo khoác denim oversize"
               width={300}
               height={400}
@@ -223,7 +212,7 @@ export default function Contact() {
 
           <div>
             <Image
-              src="/placeholder.svg?height=400&width=300"
+              src="https://images.unsplash.com/photo-1571513800374-df1bbe650e56?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D"
               alt="Chân váy xếp ly đen"
               width={300}
               height={400}

@@ -34,7 +34,7 @@ export default function ProductCard({
       })
     );
   };
-
+  console.log("image", image);
   return (
     <Card className="overflow-hidden">
       <Image

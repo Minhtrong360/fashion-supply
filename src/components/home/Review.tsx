@@ -18,7 +18,8 @@ const reviews: Review[] = [
     title: "HOT! Thuê đồ đồng giá 49k",
     description:
       "Khi thuê 2 bộ bất kì tại Tiệm Thanh Xuân sẽ thuê bộ thứ 3 trong list dưới đây với giá 49k/ngày Hiện tiệm có 2 link FB nhé ....",
-    image: "/placeholder.svg?height=300&width=400",
+    image:
+      "https://images.unsplash.com/photo-1485231183945-fffde7cc051e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
     link: "/review/1",
   },
   {
@@ -26,7 +27,8 @@ const reviews: Review[] = [
     title: "Top địa điểm chụp hoa giấy ở Sài Gòn",
     description:
       "TỔNG HỢP NHỮNG ĐỊA ĐIỂM CHỤP HOA GIẤY Cứ qua tết tầm cuối tháng 2 đầu tháng 3 hoa giấy sẽ nở rộ. Cũng vì thế mà nhiều bạn trẻ...",
-    image: "/placeholder.svg?height=300&width=400",
+    image:
+      "https://images.unsplash.com/photo-1485231183945-fffde7cc051e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
     link: "/review/2",
   },
   {
@@ -34,7 +36,8 @@ const reviews: Review[] = [
     title: "Review du lịch Phú Quý 4 ngày 3 đêm",
     description:
       'Cùng mình ăn chơi "tẹt ga" tại Phú Quý 4 ngày 3 đêm với giá cả rất phải chăng mà phong cảnh, ăn uống ở đây thì khỏi bàn cãi...',
-    image: "/placeholder.svg?height=300&width=400",
+    image:
+      "https://images.unsplash.com/photo-1485231183945-fffde7cc051e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
     link: "/review/3",
   },
   {
@@ -42,7 +45,8 @@ const reviews: Review[] = [
     title: "Khám phá ẩm thực đường phố Hà Nội",
     description:
       "Hà Nội nổi tiếng với nền ẩm thực đa dạng và phong phú. Cùng khám phá những món ăn đường phố ngon nhất của Thủ đô...",
-    image: "/placeholder.svg?height=300&width=400",
+    image:
+      "https://images.unsplash.com/photo-1485231183945-fffde7cc051e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
     link: "/review/4",
   },
   {
@@ -50,7 +54,8 @@ const reviews: Review[] = [
     title: "Top 5 bãi biển đẹp nhất Việt Nam",
     description:
       "Việt Nam tự hào với đường bờ biển dài hơn 3000km, cùng khám phá những bãi biển đẹp nhất mà bạn không thể bỏ qua...",
-    image: "/placeholder.svg?height=300&width=400",
+    image:
+      "https://images.unsplash.com/photo-1485231183945-fffde7cc051e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
     link: "/review/5",
   },
   {
@@ -58,7 +63,8 @@ const reviews: Review[] = [
     title: "Hướng dẫn leo núi Fansipan cho người mới bắt đầu",
     description:
       'Fansipan - "Nóc nhà Đông Dương" là thử thách hấp dẫn cho nhiều người. Cùng tìm hiểu cách chuẩn bị và lên kế hoạch cho chuyến leo núi đầu tiên...',
-    image: "/placeholder.svg?height=300&width=400",
+    image:
+      "https://images.unsplash.com/photo-1485231183945-fffde7cc051e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
     link: "/review/6",
   },
   {
@@ -66,7 +72,8 @@ const reviews: Review[] = [
     title: "Khám phá văn hóa cà phê Sài Gòn",
     description:
       "Sài Gòn không chỉ nổi tiếng với cà phê sữa đá, mà còn có cả một nền văn hóa cà phê độc đáo. Hãy cùng khám phá những quán cà phê đặc biệt nhất...",
-    image: "/placeholder.svg?height=300&width=400",
+    image:
+      "https://images.unsplash.com/photo-1485231183945-fffde7cc051e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
     link: "/review/7",
   },
   {
@@ -74,7 +81,8 @@ const reviews: Review[] = [
     title: "Top 10 món ăn vặt không thể bỏ qua ở Đà Lạt",
     description:
       "Đà Lạt không chỉ nổi tiếng với khí hậu mát mẻ mà còn có nền ẩm thực đường phố phong phú. Cùng khám phá những món ăn vặt ngon nhất...",
-    image: "/placeholder.svg?height=300&width=400",
+    image:
+      "https://images.unsplash.com/photo-1485231183945-fffde7cc051e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
     link: "/review/8",
   },
   {
@@ -82,7 +90,8 @@ const reviews: Review[] = [
     title: "Hướng dẫn du lịch bụi Sapa tiết kiệm",
     description:
       "Sapa là điểm đến hấp dẫn cho nhiều du khách. Cùng tìm hiểu cách du lịch Sapa tiết kiệm nhất mà vẫn trải nghiệm đầy đủ...",
-    image: "/placeholder.svg?height=300&width=400",
+    image:
+      "https://images.unsplash.com/photo-1485231183945-fffde7cc051e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
     link: "/review/9",
   },
   {
@@ -90,7 +99,8 @@ const reviews: Review[] = [
     title: "Review homestay view biển đẹp nhất Vũng Tàu",
     description:
       "Vũng Tàu không chỉ có những bãi biển đẹp mà còn có nhiều homestay view biển tuyệt vời. Cùng điểm qua những homestay đáng ở nhất...",
-    image: "/placeholder.svg?height=300&width=400",
+    image:
+      "https://images.unsplash.com/photo-1485231183945-fffde7cc051e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
     link: "/review/10",
   },
 ];

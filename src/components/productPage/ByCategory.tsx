@@ -26,99 +26,143 @@ type ProductListingProps = {
 const products: Product[] = [
   {
     id: 1,
-    name: "Áo thun kem tay dài - SOE294",
-    price: 350000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Set váy croptop chân váy da – SAC424",
+    price: 450000,
+    image:
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
   },
   {
     id: 2,
-    name: "Bikini tôn nâu tay ngắn - SAC241",
-    price: 450000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Set váy len đính gấu – SAF423",
+    price: 550000,
+    image:
+      "https://images.unsplash.com/photo-1544957992-20514f595d6f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
   },
   {
     id: 3,
-    name: "Đầm 2 dây kem phối ren - mã DAD466",
-    price: 550000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Set váy len kem đuôi cá – SAE422",
+    price: 650000,
+    image:
+      "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
   },
   {
     id: 4,
-    name: "Đầm 2 dây nhiều nơ - mã DC0529",
-    price: 500000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Đầm tiệc 2 dây lông vũ – SAE221",
+    price: 750000,
+    image:
+      "https://images.unsplash.com/photo-1484327973588-c31f829103fe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
   },
   {
     id: 5,
-    name: "Áo khoác nhẹ chống nắng",
-    price: 400000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Áo khoác dạ tweed – SAF425",
+    price: 850000,
+    image:
+      "https://images.unsplash.com/photo-1571513800374-df1bbe650e56?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
   },
   {
     id: 6,
-    name: "Quần short đi biển nam",
-    price: 300000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Quần jeans ống rộng – SAJ426",
+    price: 350000,
+    image:
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
   },
   {
     id: 7,
-    name: "Mũ rộng vành chống nắng",
-    price: 200000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Áo sơ mi lụa – SAS427",
+    price: 400000,
+    image:
+      "https://images.unsplash.com/photo-1495385794356-15371f348c31?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
   },
   {
     id: 8,
-    name: "Túi đeo chéo du lịch",
-    price: 350000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Váy midi hoa nhí – SAV428",
+    price: 500000,
+    image:
+      "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
   },
   {
     id: 9,
-    name: "Giày sandal đi biển",
-    price: 400000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Áo len cổ lọ – SAL429",
+    price: 450000,
+    image:
+      "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
   },
   {
     id: 10,
-    name: "Áo chống nắng toàn thân",
-    price: 600000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Chân váy xếp ly – SAC430",
+    price: 380000,
+    image:
+      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
   },
   {
     id: 11,
-    name: "Kính mát thời trang",
-    price: 250000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Áo blazer oversize – SAB431",
+    price: 700000,
+    image:
+      "https://images.unsplash.com/photo-1485231183945-fffde7cc051e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
   },
   {
     id: 12,
-    name: "Váy maxi đi biển",
-    price: 550000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Đầm maxi hở lưng – SAM432",
+    price: 600000,
+    image:
+      "https://images.unsplash.com/photo-1544957992-20514f595d6f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
   },
   {
     id: 13,
-    name: "Áo thun nam cổ tròn",
-    price: 280000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Quần culottes – SAQ433",
+    price: 420000,
+    image:
+      "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
   },
   {
     id: 14,
-    name: "Quần jogger nữ thoáng mát",
-    price: 380000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Áo crop top – SAT434",
+    price: 280000,
+    image:
+      "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
   },
   {
     id: 15,
-    name: "Áo sơ mi nam ngắn tay",
-    price: 420000,
-    image: "/placeholder.svg?height=300&width=300",
+    name: "Váy slip dress – SAV435",
+    price: 550000,
+    image:
+      "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
   },
   {
     id: 16,
-    name: "Đầm suông oversize",
+    name: "Áo cardigan dài – SAC436",
     price: 480000,
-    image: "/placeholder.svg?height=300&width=300",
+    image:
+      "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+  },
+  {
+    id: 17,
+    name: "Quần short da – SAS437",
+    price: 400000,
+    image:
+      "https://images.unsplash.com/photo-1544957992-20514f595d6f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+  },
+  {
+    id: 18,
+    name: "Áo polo thêu logo – SAP438",
+    price: 350000,
+    image:
+      "https://images.unsplash.com/photo-1544957992-20514f595d6f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+  },
+  {
+    id: 19,
+    name: "Váy wrap đắp chéo – SAW439",
+    price: 520000,
+    image:
+      "https://images.unsplash.com/photo-1544957992-20514f595d6f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+  },
+  {
+    id: 20,
+    name: "Áo hoodie oversize – SAH440",
+    price: 450000,
+    image:
+      "https://images.unsplash.com/photo-1544957992-20514f595d6f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
   },
 ];
 
