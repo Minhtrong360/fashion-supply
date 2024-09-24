@@ -1,28 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Contact() {
   const leftColumnRef = useRef<HTMLDivElement>(null);
-  const [leftColumnHeight, setLeftColumnHeight] = useState(0);
+
   const [activeTab, setActiveTab] = useState("phuNhuan");
-
-  useEffect(() => {
-    const updateLeftColumnHeight = () => {
-      if (leftColumnRef.current) {
-        setLeftColumnHeight(leftColumnRef.current.offsetHeight);
-      }
-    };
-
-    updateLeftColumnHeight();
-    window.addEventListener("resize", updateLeftColumnHeight);
-
-    return () => {
-      window.removeEventListener("resize", updateLeftColumnHeight);
-    };
-  }, []);
 
   return (
     <div className="container mx-auto px-4 py-8">

@@ -1,27 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Search } from "lucide-react";
 import ReviewComponent from "@/components/home/Review";
 
 export default function Component() {
-  const [leftColumnHeight, setLeftColumnHeight] = useState(0);
-
-  useEffect(() => {
-    const updateHeight = () => {
-      const leftColumn = document.getElementById("leftColumn");
-      if (leftColumn) {
-        setLeftColumnHeight(leftColumn.offsetHeight);
-      }
-    };
-
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
-  }, []);
-
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row gap-8">
