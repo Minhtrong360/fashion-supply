@@ -129,8 +129,8 @@ export default function ReviewComponent() {
       <h2 className="text-3xl font-bold mb-6">Review</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {reviews.slice(0, visibleReviews).map((review) => (
-          <Link href={review.link} key={review.id} className="group">
-            <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 transform hover:scale-105">
+          <Link href={review.link} key={review.id} className="group flex-grow">
+            <div className="bg-white h-full rounded-lg shadow-md overflow-hidden transition-transform duration-300 transform hover:scale-105">
               <div className="relative">
                 <Image
                   src={review.image}

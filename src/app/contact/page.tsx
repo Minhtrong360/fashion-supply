@@ -120,10 +120,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <div
-          className="space-y-6"
-          style={{ minHeight: `${leftColumnHeight}px` }}
-        >
+        <div className="space-y-6 flex-column justify-start items-start">
           <div className="relative">
             <input
               type="text"
@@ -177,49 +174,41 @@ export default function Contact() {
             </ul>
           </div>
 
-          <div>
-            <Image
-              src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D"
-              alt="Sét váy sweater xanh lá"
-              width={300}
-              height={400}
-              className="mx-auto rounded-lg"
-            />
-            <p className="text-center mt-2">Sét váy sweater xanh lá - SA1429</p>
-          </div>
+          <Image
+            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D"
+            alt="Sét váy sweater xanh lá"
+            width={300}
+            height={400}
+            className="rounded-lg"
+          />
+          <p className="mt-2">Sét váy sweater xanh lá - SA1429</p>
 
-          <div>
-            <Image
-              src="https://images.unsplash.com/photo-1509631179647-0177331693ae?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D"
-              alt="Đầm hoa nhí trắng"
-              width={300}
-              height={400}
-              className="mx-auto rounded-lg"
-            />
-            <p className="text-center mt-2">Đầm hoa nhí trắng - DA2023</p>
-          </div>
+          <Image
+            src="https://images.unsplash.com/photo-1509631179647-0177331693ae?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D"
+            alt="Đầm hoa nhí trắng"
+            width={300}
+            height={400}
+            className="rounded-lg"
+          />
+          <p className="mt-2">Đầm hoa nhí trắng - DA2023</p>
 
-          <div>
-            <Image
-              src="https://images.unsplash.com/photo-1484327973588-c31f829103fe?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D"
-              alt="Áo khoác denim oversize"
-              width={300}
-              height={400}
-              className="mx-auto rounded-lg"
-            />
-            <p className="text-center mt-2">Áo khoác denim oversize - AK0506</p>
-          </div>
+          <Image
+            src="https://images.unsplash.com/photo-1484327973588-c31f829103fe?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D"
+            alt="Áo khoác denim oversize"
+            width={300}
+            height={400}
+            className="rounded-lg"
+          />
+          <p className="mt-2">Áo khoác denim oversize - AK0506</p>
 
-          <div>
-            <Image
-              src="https://images.unsplash.com/photo-1571513800374-df1bbe650e56?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D"
-              alt="Chân váy xếp ly đen"
-              width={300}
-              height={400}
-              className="mx-auto rounded-lg"
-            />
-            <p className="text-center mt-2">Chân váy xếp ly đen - CV1108</p>
-          </div>
+          <Image
+            src="https://images.unsplash.com/photo-1571513800374-df1bbe650e56?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D"
+            alt="Chân váy xếp ly đen"
+            width={300}
+            height={400}
+            className="rounded-lg"
+          />
+          <p className="mt-2">Chân váy xếp ly đen - CV1108</p>
         </div>
       </div>
     </div>
