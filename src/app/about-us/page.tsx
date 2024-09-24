@@ -10,7 +10,7 @@ export default function AboutUs() {
       <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
         <div className="w-full md:w-1/3">
           <Image
-            src="/placeholder.svg?height=300&width=300"
+            src="/samhy.png"
             alt="Tiệm Thanh Xuân Logo"
             width={300}
             height={300}
