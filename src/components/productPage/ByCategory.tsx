@@ -13,6 +13,7 @@ import ProductCard from "./ProductCard";
 type Product = {
   id: number;
   name: string;
+  description: string;
   category?: string;
   price: number;
   image: string;
@@ -23,13 +24,14 @@ type ProductListingProps = {
 };
 
 // Updated mock data for products including price
-const products: Product[] = [
+const products = [
   {
     id: 1,
     name: "Set váy croptop chân váy da – SAC424",
     price: 450000,
     image:
       "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
+    description: "A chic crop top and leather skirt set perfect for parties.",
   },
   {
     id: 2,
@@ -37,6 +39,8 @@ const products: Product[] = [
     price: 550000,
     image:
       "https://images.unsplash.com/photo-1544957992-20514f595d6f?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description:
+      "A cozy wool dress set with cute bear details, perfect for cold weather.",
   },
   {
     id: 3,
@@ -44,6 +48,8 @@ const products: Product[] = [
     price: 650000,
     image:
       "https://images.unsplash.com/photo-1509631179647-0177331693ae?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
+    description:
+      "Elegant cream-colored mermaid tail dress set for a sophisticated look.",
   },
   {
     id: 4,
@@ -51,6 +57,7 @@ const products: Product[] = [
     price: 750000,
     image:
       "https://images.unsplash.com/photo-1484327973588-c31f829103fe?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
+    description: "A glamorous feather-strap party dress for evening events.",
   },
   {
     id: 5,
@@ -58,6 +65,7 @@ const products: Product[] = [
     price: 850000,
     image:
       "https://images.unsplash.com/photo-1571513800374-df1bbe650e56?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
+    description: "A timeless tweed overcoat to elevate any outfit.",
   },
   {
     id: 6,
@@ -65,6 +73,7 @@ const products: Product[] = [
     price: 350000,
     image:
       "https://images.unsplash.com/photo-1483985988355-763728e1935b?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
+    description: "Comfortable wide-leg jeans for a casual, relaxed style.",
   },
   {
     id: 7,
@@ -72,6 +81,7 @@ const products: Product[] = [
     price: 400000,
     image:
       "https://images.unsplash.com/photo-1495385794356-15371f348c31?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description: "A sleek silk blouse that adds elegance to your wardrobe.",
   },
   {
     id: 8,
@@ -79,6 +89,7 @@ const products: Product[] = [
     price: 500000,
     image:
       "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description: "Floral midi dress for a charming, vintage-inspired look.",
   },
   {
     id: 9,
@@ -86,6 +97,7 @@ const products: Product[] = [
     price: 450000,
     image:
       "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description: "Cozy turtleneck sweater perfect for layering in winter.",
   },
   {
     id: 10,
@@ -93,6 +105,7 @@ const products: Product[] = [
     price: 380000,
     image:
       "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description: "A stylish pleated skirt for casual and formal occasions.",
   },
   {
     id: 11,
@@ -100,6 +113,7 @@ const products: Product[] = [
     price: 700000,
     image:
       "https://images.unsplash.com/photo-1485231183945-fffde7cc051e?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description: "Oversized blazer for a bold, fashion-forward look.",
   },
   {
     id: 12,
@@ -107,6 +121,7 @@ const products: Product[] = [
     price: 600000,
     image:
       "https://images.unsplash.com/photo-1544957992-20514f595d6f?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description: "Elegant backless maxi dress for summer days.",
   },
   {
     id: 13,
@@ -114,6 +129,7 @@ const products: Product[] = [
     price: 420000,
     image:
       "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description: "Chic culottes for a minimalist, contemporary style.",
   },
   {
     id: 14,
@@ -121,6 +137,7 @@ const products: Product[] = [
     price: 280000,
     image:
       "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description: "Trendy crop top for a casual, everyday look.",
   },
   {
     id: 15,
@@ -128,6 +145,7 @@ const products: Product[] = [
     price: 550000,
     image:
       "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description: "Sleek slip dress, perfect for both day and night wear.",
   },
   {
     id: 16,
@@ -135,6 +153,7 @@ const products: Product[] = [
     price: 480000,
     image:
       "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description: "A long cardigan for layering with your favorite outfits.",
   },
   {
     id: 17,
@@ -142,6 +161,7 @@ const products: Product[] = [
     price: 400000,
     image:
       "https://images.unsplash.com/photo-1544957992-20514f595d6f?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description: "Leather shorts for a bold, edgy style.",
   },
   {
     id: 18,
@@ -149,6 +169,7 @@ const products: Product[] = [
     price: 350000,
     image:
       "https://images.unsplash.com/photo-1544957992-20514f595d6f?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description: "Polo shirt with embroidered logo for a casual look.",
   },
   {
     id: 19,
@@ -156,6 +177,7 @@ const products: Product[] = [
     price: 520000,
     image:
       "https://images.unsplash.com/photo-1544957992-20514f595d6f?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description: "Wrap dress for a feminine, elegant look.",
   },
   {
     id: 20,
@@ -163,6 +185,7 @@ const products: Product[] = [
     price: 450000,
     image:
       "https://images.unsplash.com/photo-1544957992-20514f595d6f?width=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
+    description: "Oversized hoodie for a cozy, relaxed style.",
   },
 ];
 
@@ -260,6 +283,7 @@ export default function ByCategory({ categoryName }: ProductListingProps) {
             key={product.id}
             id={product.id}
             name={product.name}
+            description={product.description}
             price={product.price}
             image={product.image}
           />

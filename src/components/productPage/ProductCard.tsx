@@ -11,6 +11,7 @@ import { ShoppingCart } from "lucide-react";
 type ProductCardProps = {
   id: number;
   name: string;
+  description: string;
   price: number;
   image: string;
 };
@@ -18,6 +19,7 @@ type ProductCardProps = {
 export default function ProductCard({
   id,
   name,
+  description,
   price,
   image,
 }: ProductCardProps) {
@@ -28,13 +30,14 @@ export default function ProductCard({
       addItem({
         id,
         name,
+        description,
         price,
         image,
         quantity: 1,
       })
     );
   };
-  console.log("image", image);
+
   return (
     <Card className="overflow-hidden">
       <Image
@@ -46,6 +49,8 @@ export default function ProductCard({
       />
       <CardContent className="p-4">
         <h2 className="text-lg font-semibold mb-2">{name}</h2>
+        <p className="text-gray-600 mb-2 line-clamp-2">{description}</p>{" "}
+        {/* Updated to use line-clamp-2 */}
         <p className="text-gray-600">{price.toLocaleString("vi-VN")} ₫</p>
       </CardContent>
       <CardFooter className="p-4 flex justify-between">
