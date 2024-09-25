@@ -1,7 +1,10 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-const supabaseUrl = "https://your-supabase-url.supabase.co";
-const supabaseKey = "your-anon-key"; // Use your Supabase API key here
-const supabase = createClient(supabaseUrl, supabaseKey);
+// Define types for your environment variables to ensure type safety
+const supabaseUrl: string = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+const supabaseKey: string = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+
+// Create a Supabase client with typed values
+const supabase: SupabaseClient = createClient(supabaseUrl, supabaseKey);
 
 export default supabase;

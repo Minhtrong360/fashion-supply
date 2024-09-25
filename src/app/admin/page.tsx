@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
   Table,
@@ -17,177 +17,276 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import supabase from "@/supabase/supabase";
+import { UUID } from "crypto";
 
 interface Product {
-  id: number;
+  id: UUID;
   name: string;
   description: string;
-  rentalPrice: number;
+  rental_price: number;
+  purchase_price: number; // New field for purchase price
   images: string[];
-  availableQuantity: number;
-  totalQuantity: number;
+  available_quantity: number;
+  total_quantity: number;
 }
 
 interface Rental {
-  id: number;
-  productId: number;
-  productName: string;
-  startDate: string;
-  endDate: string;
+  id: UUID;
+  product_id: UUID;
+  product_name: string;
+  product_price: number;
+  start_date: string;
+  end_date: string;
   quantity: number;
-  totalCost: number;
-  rentalDays: number;
-  renterName: string;
-  renterPhone: string;
-  renterEmail: string;
+  total_cost: number;
+  rental_days: number;
+  renter_name: string;
+  renter_phone: string;
+  renter_email: string;
   deposit: number;
 }
 
 export default function Dashboard() {
+  const [products, setProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [rentDays, setRentDays] = useState<number>(1);
-  const [rentQuantity, setRentQuantity] = useState<number>(1);
-  const [renterName, setRenterName] = useState<string>("");
-  const [renterPhone, setRenterPhone] = useState<string>("");
-  const [renterEmail, setRenterEmail] = useState<string>("");
+  const [rent_days, setRent_days] = useState<number>(1);
+  const [rent_quantity, setRent_quantity] = useState<number>(1);
+  const [renter_name, setRenter_name] = useState<string>("");
+  const [renter_phone, setRenter_phone] = useState<string>("");
+  const [renter_email, setRenter_email] = useState<string>("");
   const [deposit, setDeposit] = useState<number>(0);
   const [newProduct, setNewProduct] = useState<Omit<Product, "id">>({
     name: "",
     description: "",
-    rentalPrice: 0,
+    purchase_price: 0,
+    rental_price: 0,
     images: [],
-    availableQuantity: 0,
-    totalQuantity: 0,
+    available_quantity: 0,
+    total_quantity: 0,
   });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const [products, setProducts] = useState<Product[]>([
-    {
-      id: 1,
-      name: "Set váy croptop chân váy da – SAC424",
-      rentalPrice: 50000,
-      description: "A stylish crop top and leather skirt set.",
-      images: [
-        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
-      ],
-      availableQuantity: 5,
-      totalQuantity: 10,
-    },
-    {
-      id: 2,
-      name: "Áo sơ mi trắng cổ đức – ASM221",
-      rentalPrice: 30000,
-      description: "A classic white shirt with a mandarin collar.",
-      images: [
-        "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D",
-      ],
-      availableQuantity: 8,
-      totalQuantity: 15,
-    },
-    {
-      id: 3,
-      name: "Quần jean ống rộng – QJN332",
-      rentalPrice: 40000,
-      description: "Wide-leg jeans for a relaxed fit.",
-      images: [
-        "https://images.unsplash.com/photo-1475180098004-ca77a66827be?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZhc2hpb258ZW58MHx8MHx8fDA%3D",
-      ],
-      availableQuantity: 3,
-      totalQuantity: 8,
-    },
-  ]);
-
   const [rentals, setRentals] = useState<Rental[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   // State for managing modal visibility and password validation
-  const [isModalVisible, setIsModalVisible] = useState(true); // Initially show the modal
-  const [password, setPassword] = useState<string>(""); // Password input state
+  const [isModalVisible, setIsModalVisible] = useState(true);
+  const [password, setPassword] = useState<string>("");
   const [isPasswordIncorrect, setIsPasswordIncorrect] =
-    useState<boolean>(false); // To show error message
+    useState<boolean>(false);
   const correctPassword = "samhydangyeu"; // Replace with your actual password
+
+  // Fetch products from Supabase
+  const fetchProducts = async () => {
+    setLoading(true);
+    const { data, error } = await supabase.from("products").select("*");
+    if (error) {
+      console.error("Error fetching products:", error);
+      message.error("Failed to load products");
+    } else {
+      setProducts(data || []);
+    }
+    setLoading(false);
+  };
+
+  // Fetch rentals from Supabase
+  const fetchRentals = async () => {
+    setLoading(true);
+    const { data, error } = await supabase.from("rentals").select("*");
+    if (error) {
+      console.error("Error fetching rentals:", error);
+      message.error("Failed to load rentals");
+    } else {
+      setRentals(data || []); // Update state with the fetched rentals
+    }
+    setLoading(false);
+  };
+
+  // Call the fetchRentals function in useEffect to load rentals when component mounts
+  useEffect(() => {
+    fetchProducts(); // Fetch products
+    fetchRentals(); // Fetch rentals
+  }, []);
 
   const handleProductSelect = (product: Product) => {
     setSelectedProduct(product);
-    setRentDays(1);
-    setRentQuantity(1);
+    setRent_days(1);
+    setRent_quantity(1);
     setCurrentImageIndex(0);
   };
 
-  const handleUpdateProduct = () => {
-    if (selectedProduct) {
-      const updatedProducts = products.map((p) =>
-        p.id === selectedProduct.id ? selectedProduct : p
-      );
-      setProducts(updatedProducts);
-      console.log("Cập nhật sản phẩm:", selectedProduct);
+  const handleUpdateProduct = async () => {
+    if (!selectedProduct) return;
+
+    try {
+      const { error } = await supabase
+        .from("products")
+        .update({
+          name: selectedProduct.name,
+          description: selectedProduct.description,
+          purchase_price: selectedProduct.purchase_price, // Add this line
+
+          rental_price: selectedProduct.rental_price,
+          images: selectedProduct.images,
+          available_quantity: selectedProduct.available_quantity,
+          total_quantity: selectedProduct.total_quantity,
+        })
+        .eq("id", selectedProduct.id); // Ensure we're updating the correct product by ID
+
+      if (error) {
+        console.error("Error updating product:", error);
+        message.error("Failed to update product.");
+      } else {
+        message.success("Product updated successfully.");
+        const updatedProducts = products.map((p) =>
+          p.id === selectedProduct.id ? selectedProduct : p
+        );
+        setProducts(updatedProducts); // Update the local state with the updated product
+      }
+    } catch (err) {
+      console.error(err);
     }
   };
 
-  const handleAddProduct = () => {
-    const newId = Math.max(...products.map((p) => p.id)) + 1;
-    const productToAdd = { ...newProduct, id: newId };
-    setProducts([...products, productToAdd]);
-    setNewProduct({
-      name: "",
-      description: "",
-      rentalPrice: 0,
-      images: [],
-      availableQuantity: 0,
-      totalQuantity: 0,
-    });
+  const handleAddProduct = async () => {
+    // Explicitly cast the return type as Product[]
+    const { data, error } = await supabase
+      .from("products")
+      .insert([
+        {
+          name: newProduct.name,
+          description: newProduct.description,
+          purchase_price: newProduct.purchase_price, // Add this line
+          rental_price: newProduct.rental_price,
+          images: newProduct.images,
+          available_quantity: newProduct.available_quantity,
+          total_quantity: newProduct.total_quantity,
+        },
+      ])
+      .select("*"); // Ensure Supabase returns all columns of the inserted product(s)
+
+    if (error) {
+      message.error("Failed to add product.");
+    } else if (data && data.length > 0) {
+      // Check if data exists and contains at least one item
+      message.success("Product added successfully.");
+      setProducts([...products, { id: data[0].id, ...newProduct }]); // Update local state with the new product
+      setNewProduct({
+        name: "",
+        description: "",
+        purchase_price: 0,
+        rental_price: 0,
+        images: [],
+        available_quantity: 0,
+        total_quantity: 0,
+      });
+    }
   };
 
-  const handleRent = () => {
+  const handleRent = async () => {
     if (selectedProduct) {
-      const rentalCost = selectedProduct.rentalPrice * rentDays * rentQuantity;
-      const newRental: Rental = {
-        id: rentals.length + 1,
-        productId: selectedProduct.id,
-        productName: selectedProduct.name,
-        startDate: new Date().toISOString(),
-        endDate: new Date(
-          Date.now() + rentDays * 24 * 60 * 60 * 1000
+      const rentalCost =
+        selectedProduct.rental_price * rent_days * rent_quantity;
+      const newRental: Omit<Rental, "id"> = {
+        product_id: selectedProduct.id,
+        product_name: selectedProduct.name,
+        product_price: selectedProduct.rental_price,
+        start_date: new Date().toISOString(),
+        end_date: new Date(
+          Date.now() + rent_days * 24 * 60 * 60 * 1000
         ).toISOString(),
-        quantity: rentQuantity,
-        totalCost: rentalCost,
-        rentalDays: rentDays,
-        renterName,
-        renterPhone,
-        renterEmail,
+        quantity: rent_quantity,
+        total_cost: rentalCost,
+        rental_days: rent_days,
+        renter_name,
+        renter_phone,
+        renter_email,
         deposit,
       };
-      setRentals([...rentals, newRental]);
 
-      const updatedProducts = products.map((p) =>
-        p.id === selectedProduct.id
-          ? { ...p, availableQuantity: p.availableQuantity - rentQuantity }
-          : p
-      );
-      setProducts(updatedProducts);
-      setSelectedProduct({
-        ...selectedProduct,
-        availableQuantity: selectedProduct.availableQuantity - rentQuantity,
-      });
+      try {
+        // Insert rental data into Supabase rentals table
+        const { data, error } = await supabase
+          .from("rentals")
+          .insert([
+            {
+              product_id: newRental.product_id,
+              product_name: newRental.product_name,
+              renter_name: newRental.renter_name,
+              renter_phone: newRental.renter_phone,
+              renter_email: newRental.renter_email,
+              quantity: newRental.quantity,
+              total_cost: newRental.total_cost,
+              start_date: newRental.start_date,
+              end_date: newRental.end_date,
+              deposit: newRental.deposit,
+              paid_in_full: false, // default to false initially
+            },
+          ])
+          .select("*"); // Select all fields to get the generated `id`
 
-      console.log("Đã thuê sản phẩm:", newRental);
+        if (error) {
+          message.error("Failed to rent product.");
+          console.error("Error saving rental:", error);
+        } else if (data && data.length > 0) {
+          message.success("Rental saved successfully.");
+
+          // Add the new rental with the automatically generated ID
+          setRentals([...rentals, data[0]]);
+
+          const updatedProducts = products.map((p) =>
+            p.id === selectedProduct.id
+              ? {
+                  ...p,
+                  available_quantity: p.available_quantity - rent_quantity,
+                }
+              : p
+          );
+          setProducts(updatedProducts);
+          setSelectedProduct({
+            ...selectedProduct,
+            available_quantity:
+              selectedProduct.available_quantity - rent_quantity,
+          });
+        }
+      } catch (err) {
+        console.error("Error:", err);
+      }
     }
   };
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const files = event.target.files;
     if (files) {
-      const newImages = Array.from(files).map((file) =>
-        URL.createObjectURL(file)
-      );
+      const uploadedImageUrls: string[] = [];
+
+      for (const file of Array.from(files)) {
+        const { error } = await supabase.storage
+          .from("product-images")
+          .upload(`public/${file.name}`, file); // Adjust path based on your storage settings
+
+        if (error) {
+          console.error("Error uploading image:", error);
+          message.error("Failed to upload image.");
+        } else {
+          const imageUrl = supabase.storage
+            .from("product-images")
+            .getPublicUrl(`public/${file.name}`).data.publicUrl;
+          uploadedImageUrls.push(imageUrl);
+        }
+      }
+
       if (selectedProduct) {
         setSelectedProduct({
           ...selectedProduct,
-          images: [...selectedProduct.images, ...newImages],
+          images: [...selectedProduct.images, ...uploadedImageUrls],
         });
       } else {
         setNewProduct({
           ...newProduct,
-          images: [...newProduct.images, ...newImages],
+          images: [...newProduct.images, ...uploadedImageUrls],
         });
       }
     }
@@ -210,14 +309,22 @@ export default function Dashboard() {
     const start = new Date(startDate);
     const now = new Date();
 
-    // Calculate the difference in milliseconds
-    const difference = now.getTime() - start.getTime();
+    // Adjust both dates to Vietnam timezone (GMT+7)
+    const timeZone = "Asia/Ho_Chi_Minh"; // Vietnam timezone
+    const startInVietnam = new Date(
+      start.toLocaleString("en-US", { timeZone })
+    );
+    const nowInVietnam = new Date(now.toLocaleString("en-US", { timeZone }));
 
-    // Convert milliseconds to days
-    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    // Set time to 0:00 for both dates
+    startInVietnam.setHours(0, 0, 0, 0);
+    nowInVietnam.setHours(0, 0, 0, 0);
 
-    // If the difference is less than 1 day, count it as 1 day
-    return days >= 1 ? days : 1;
+    // Calculate difference in days
+    const differenceInTime = nowInVietnam.getTime() - startInVietnam.getTime();
+    const days = Math.floor(differenceInTime / (1000 * 60 * 60 * 24)) + 1;
+
+    return days > 0 ? days : 1;
   };
 
   // Handle password submission
@@ -234,6 +341,12 @@ export default function Dashboard() {
   const handlePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
+
+  if (loading) {
+    return <p>Loading...</p>; // Loading state
+  }
+
+  console.log("rentals", rentals);
 
   return (
     <div>
@@ -299,6 +412,7 @@ export default function Dashboard() {
                       <TableRow>
                         <TableHead>Hình ảnh</TableHead>
                         <TableHead>Tên sản phẩm</TableHead>
+                        <TableHead>Giá nhập sản phẩm</TableHead>{" "}
                         <TableHead>Giá thuê/ngày</TableHead>
                         <TableHead>Số lượng có sẵn</TableHead>
                         <TableHead>Tổng số lượng</TableHead>
@@ -318,10 +432,14 @@ export default function Dashboard() {
                           </TableCell>
                           <TableCell>{product.name}</TableCell>
                           <TableCell>
-                            {product.rentalPrice.toLocaleString()} VND
+                            {product.purchase_price.toLocaleString()} VND
+                          </TableCell>{" "}
+                          {/* New column */}
+                          <TableCell>
+                            {product.rental_price.toLocaleString()} VND
                           </TableCell>
-                          <TableCell>{product.availableQuantity}</TableCell>
-                          <TableCell>{product.totalQuantity}</TableCell>
+                          <TableCell>{product.available_quantity}</TableCell>
+                          <TableCell>{product.total_quantity}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -421,6 +539,19 @@ export default function Dashboard() {
                                 })
                               }
                             />
+                            <Label>Giá nhập sản phẩm</Label>
+                            <Input
+                              className="!mb-4"
+                              type="number"
+                              placeholder="Giá nhập sản phẩm"
+                              value={selectedProduct?.purchase_price || 0}
+                              onChange={(e) =>
+                                setSelectedProduct({
+                                  ...selectedProduct,
+                                  purchase_price: parseInt(e.target.value),
+                                })
+                              }
+                            />
                             <Label>Mô tả sản phẩm</Label>
                             <Input
                               className="!mb-4"
@@ -438,11 +569,11 @@ export default function Dashboard() {
                               className="!mb-4"
                               type="number"
                               placeholder="Giá thuê/ngày"
-                              value={selectedProduct.rentalPrice}
+                              value={selectedProduct.rental_price}
                               onChange={(e) =>
                                 setSelectedProduct({
                                   ...selectedProduct,
-                                  rentalPrice: parseInt(e.target.value),
+                                  rental_price: parseInt(e.target.value),
                                 })
                               }
                             />
@@ -451,11 +582,11 @@ export default function Dashboard() {
                               className="!mb-4"
                               type="number"
                               placeholder="Số lượng có sẵn"
-                              value={selectedProduct.availableQuantity}
+                              value={selectedProduct.available_quantity}
                               onChange={(e) =>
                                 setSelectedProduct({
                                   ...selectedProduct,
-                                  availableQuantity: parseInt(e.target.value),
+                                  available_quantity: parseInt(e.target.value),
                                 })
                               }
                             />
@@ -464,11 +595,11 @@ export default function Dashboard() {
                               className="!mb-4"
                               type="number"
                               placeholder="Tổng số lượng"
-                              value={selectedProduct.totalQuantity}
+                              value={selectedProduct.total_quantity}
                               onChange={(e) =>
                                 setSelectedProduct({
                                   ...selectedProduct,
-                                  totalQuantity: parseInt(e.target.value),
+                                  total_quantity: parseInt(e.target.value),
                                 })
                               }
                             />
@@ -519,16 +650,29 @@ export default function Dashboard() {
                               }
                             />
 
+                            <Label> Giá nhập sản phẩm </Label>
+                            <Input
+                              className="!mb-4"
+                              type="number"
+                              placeholder="Giá nhập sản phẩm"
+                              value={newProduct.purchase_price}
+                              onChange={(e) =>
+                                setNewProduct({
+                                  ...newProduct,
+                                  purchase_price: parseInt(e.target.value),
+                                })
+                              }
+                            />
                             <Label> Giá thuê/ngày</Label>
                             <Input
                               className="!mb-4"
                               type="number"
                               placeholder="Giá thuê/ngày"
-                              value={newProduct.rentalPrice}
+                              value={newProduct.rental_price}
                               onChange={(e) =>
                                 setNewProduct({
                                   ...newProduct,
-                                  rentalPrice: parseInt(e.target.value),
+                                  rental_price: parseInt(e.target.value),
                                 })
                               }
                             />
@@ -538,11 +682,11 @@ export default function Dashboard() {
                               className="!mb-4"
                               type="number"
                               placeholder="Tổng số lượng"
-                              value={newProduct.totalQuantity}
+                              value={newProduct.total_quantity}
                               onChange={(e) =>
                                 setNewProduct({
                                   ...newProduct,
-                                  totalQuantity: parseInt(e.target.value),
+                                  total_quantity: parseInt(e.target.value),
                                 })
                               }
                             />
@@ -588,7 +732,7 @@ export default function Dashboard() {
                               variant="outline"
                               onClick={() => handleProductSelect(product)}
                               className="w-full text-left flex items-center justify-start space-x-2"
-                              disabled={product.availableQuantity === 0}
+                              disabled={product.available_quantity === 0}
                             >
                               <div className="w-8 h-8 flex-shrink-0">
                                 <Image
@@ -600,7 +744,8 @@ export default function Dashboard() {
                                 />
                               </div>
                               <span>
-                                {product.name} (Còn {product.availableQuantity})
+                                {product.name} (Còn {product.available_quantity}
+                                )
                               </span>
                             </Button>
                           </li>
@@ -621,30 +766,30 @@ export default function Dashboard() {
                             className="rounded-md"
                           />
                           <div>
-                            <Label htmlFor="rentDays">Số ngày thuê</Label>
+                            <Label htmlFor="rent_days">Số ngày thuê</Label>
                             <Input
                               className="!mb-4"
-                              id="rentDays"
+                              id="rent_days"
                               type="number"
-                              value={rentDays}
+                              value={rent_days}
                               onChange={(e) =>
-                                setRentDays(parseInt(e.target.value))
+                                setRent_days(parseInt(e.target.value))
                               }
                               min={1}
                             />
                           </div>
                           <div>
-                            <Label htmlFor="rentQuantity">Số lượng thuê</Label>
+                            <Label htmlFor="rent_quantity">Số lượng thuê</Label>
                             <Input
                               className="!mb-4"
-                              id="rentQuantity"
+                              id="rent_quantity"
                               type="number"
-                              value={rentQuantity}
+                              value={rent_quantity}
                               onChange={(e) =>
-                                setRentQuantity(parseInt(e.target.value))
+                                setRent_quantity(parseInt(e.target.value))
                               }
                               min={1}
-                              max={selectedProduct.availableQuantity}
+                              max={selectedProduct.available_quantity}
                             />
                           </div>
                           <div>
@@ -652,8 +797,8 @@ export default function Dashboard() {
                             <Input
                               className="!mb-4"
                               placeholder="Tên người thuê"
-                              value={renterName}
-                              onChange={(e) => setRenterName(e.target.value)}
+                              value={renter_name}
+                              onChange={(e) => setRenter_name(e.target.value)}
                             />
                           </div>
                           <div>
@@ -661,8 +806,8 @@ export default function Dashboard() {
                             <Input
                               className="!mb-4"
                               placeholder="Số điện thoại"
-                              value={renterPhone}
-                              onChange={(e) => setRenterPhone(e.target.value)}
+                              value={renter_phone}
+                              onChange={(e) => setRenter_phone(e.target.value)}
                             />
                           </div>
                           <div>
@@ -670,8 +815,8 @@ export default function Dashboard() {
                             <Input
                               className="!mb-4"
                               placeholder="Email"
-                              value={renterEmail}
-                              onChange={(e) => setRenterEmail(e.target.value)}
+                              value={renter_email}
+                              onChange={(e) => setRenter_email(e.target.value)}
                             />
                           </div>
                           <div>
@@ -689,9 +834,9 @@ export default function Dashboard() {
                           <div>
                             <strong>Tổng chi phí: </strong>
                             {(
-                              selectedProduct.rentalPrice *
-                              rentDays *
-                              rentQuantity
+                              selectedProduct.rental_price *
+                              rent_days *
+                              rent_quantity
                             ).toLocaleString()}{" "}
                             VND
                           </div>
@@ -714,28 +859,45 @@ export default function Dashboard() {
                           <TableHead>Tên người thuê</TableHead>
                           <TableHead>Số điện thoại</TableHead>
                           <TableHead>Email</TableHead>
-                          <TableHead>Số ngày đã thuê</TableHead>
-                          <TableHead>Số lượng</TableHead>
+                          <TableHead>Ngày thuê</TableHead>
+                          <TableHead className="text-center">
+                            Số ngày đã thuê
+                          </TableHead>
+                          <TableHead className="text-center">
+                            Số lượng
+                          </TableHead>
                           <TableHead>Thành tiền</TableHead>
                           <TableHead>Số tiền đã cọc</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {rentals.map((rental) => (
+                        {rentals.map((rental, index: number) => (
                           <TableRow key={rental.id}>
-                            <TableCell>{rental.id}</TableCell>
-                            <TableCell>{rental.productName}</TableCell>
-                            <TableCell>{rental.renterName}</TableCell>
-                            <TableCell>{rental.renterPhone}</TableCell>
-                            <TableCell>{rental.renterEmail}</TableCell>
+                            <TableCell>{index + 1}</TableCell>
+                            <TableCell>{rental.product_name}</TableCell>
+                            <TableCell>{rental.renter_name}</TableCell>
+                            <TableCell>{rental.renter_phone}</TableCell>
+                            <TableCell>{rental.renter_email}</TableCell>
                             <TableCell>
-                              {calculateRentalDays(rental.startDate)}
+                              {new Date(rental.start_date).toLocaleDateString(
+                                "en-GB",
+                                {
+                                  day: "2-digit",
+                                  month: "2-digit",
+                                  year: "numeric",
+                                }
+                              )}
                             </TableCell>
-                            <TableCell>{rental.quantity}</TableCell>
+                            <TableCell className="text-center">
+                              {calculateRentalDays(rental.start_date)}
+                            </TableCell>
+                            <TableCell className="text-center">
+                              {rental.quantity}
+                            </TableCell>
                             <TableCell>
                               {(
-                                selectedProduct!.rentalPrice *
-                                calculateRentalDays(rental.startDate) *
+                                rental.product_price *
+                                calculateRentalDays(rental.start_date) *
                                 rental.quantity
                               ).toLocaleString()}{" "}
                               VND
